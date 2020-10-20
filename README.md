@@ -1,2 +1,3 @@
-# flutter_app_template
-A template to use for creating new flutter apps instead of `flutter create X`
+# Covid 19 hotspots
+
+An application to display current COVID-19 information in your area. 
