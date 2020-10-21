@@ -1,7 +1,7 @@
 name: flutter_app_template # TODO
 description: A new Flutter project # TODO.
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
@@ -11,20 +11,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  # Uncomment for some helpful flutter icons and fonts
-  # font_awesome_flutter: ^8.10.0
-
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
+  fl_chart: ^0.12.0
+  http: ^0.12.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -33,9 +27,6 @@ flutter:
   # Add assets here
   assets:
     - assets/images/
-
-
-
   # Fonts example
   # fonts:
   #   - family: Schyler
