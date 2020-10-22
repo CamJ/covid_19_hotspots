@@ -18,7 +18,8 @@ class _NewsScreenState extends State<NewsScreen> {
         title: Text('COVID 19 Hotspots'),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        onTap: (value) => Navigator.pushNamed(context, Routes.getRoute(value)),
+        onTap: (value) =>
+            Navigator.pushReplacementNamed(context, Routes.getRoute(value)),
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.near_me), title: Text("Near Me")),

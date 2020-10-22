@@ -22,6 +22,7 @@ class CovidCard extends StatelessWidget {
                 Text('LOCATION'),
                 SizedBox(width: 20.0),
                 Text('INsert chart here'),
+                // TODO: What charts to show? 
               ],
             )
           ],

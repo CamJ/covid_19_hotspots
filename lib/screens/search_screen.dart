@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_template/components/city_list.dart';
 
 import '../utils/routes.dart';
 
@@ -20,7 +21,8 @@ class _SearchScreenState extends State<SearchScreen> {
         title: Text('COVID 19 Hotspots'),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        onTap: (value) => Navigator.pushNamed(context, Routes.getRoute(value)),
+        onTap: (value) =>
+            Navigator.pushReplacementNamed(context, Routes.getRoute(value)),
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.near_me), title: Text("Near Me")),
@@ -31,10 +33,7 @@ class _SearchScreenState extends State<SearchScreen> {
         ],
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
-        ),
+        child: CityCovidList(),
       ),
     );
   }
