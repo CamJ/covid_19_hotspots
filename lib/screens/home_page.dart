@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_template/components/covid_card.dart';
 
 import '../services/covid_api.dart';
 
@@ -26,21 +27,32 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.near_me), title: Text("Near Me")),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.location_city), title: Text("Search")),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.new_releases), title: Text("News")),
+        ],
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Flutter Template',
+            CovidCard(),
+            SizedBox(
+              height: 10.0,
+            ),
+            // Make this second one a scrolling, local news tile?
+            CovidCard(),
+            SizedBox(
+              height: 10.0,
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
