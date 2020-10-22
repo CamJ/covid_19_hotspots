@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_template/components/covid_card.dart';
 
 import '../services/covid_api.dart';
+import '../utils/routes.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -28,6 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        onTap: (value) => Navigator.pushNamed(context, Routes.getRoute(value)),
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.near_me), title: Text("Near Me")),

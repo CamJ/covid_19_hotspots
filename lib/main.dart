@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_template/screens/home_page.dart';
+import 'package:flutter_app_template/screens/news_screen.dart';
 import 'package:flutter_app_template/utils/routes.dart';
 
 import './screens/search_screen.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
                 title: 'Covid 19 Hotspots',
               ),
           Routes.SEARCH: (context) => SearchScreen(),
-          // Routes.NEWS : (context) => N(),
+          Routes.NEWS: (context) => NewsScreen(),
         },
         theme: ThemeData.dark().copyWith(
           primaryColor: Colors.black,

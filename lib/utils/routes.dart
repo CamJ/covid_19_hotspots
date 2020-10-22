@@ -9,6 +9,23 @@ class Routes {
   static const NEAR_ME = '/near_me';
   static const SEARCH = '/search';
   static const NEWS = '/news';
+
+  static String getRoute(int item) {
+    String route;
+    switch (item) {
+      case 0:
+        route = NEAR_ME;
+        break;
+      case 1:
+        route = SEARCH;
+        break;
+      case 2:
+        route = NEWS;
+        break;
+    }
+
+    return route;
+  }
   // Add app wide routes here that are then used in main or the widget itself
   // Could even have the map within here
 
