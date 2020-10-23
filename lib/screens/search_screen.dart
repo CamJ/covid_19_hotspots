@@ -54,5 +54,7 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  void getStateCovidStats(String state) {}
+  void getStateCovidStats(String state) {
+    if (state == null || state.trim().isEmpty) return;
+  }
 }

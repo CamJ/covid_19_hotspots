@@ -1,4 +1,6 @@
-class CovidData {
+import 'package:flutter/material.dart';
+
+class CovidData extends ChangeNotifier {
   // TODO: what do I want this model to look like?
   List<StateData> states = [];
 

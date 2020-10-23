@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_template/screens/home_page.dart';
 import 'package:flutter_app_template/screens/news_screen.dart';
 import 'package:flutter_app_template/utils/routes.dart';
+import 'package:provider/provider.dart';
 
 import './screens/search_screen.dart';
+import 'models/covid_data.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+    child: MyApp(),
+    create: (context) => CovidData([]),
+  ));
 }
 
 class MyApp extends StatelessWidget {

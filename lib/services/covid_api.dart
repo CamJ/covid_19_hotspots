@@ -42,4 +42,7 @@ class CovidAPI {
       print(data.statusCode);
     }
   }
+
+  // TODO: get data from a different URL to get county data
+  // https://disease.sh/v3/covid-19/jhucsse/counties/marshall
 }
