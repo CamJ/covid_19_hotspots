@@ -7,7 +7,7 @@ class CityCovidList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Expanded(
       child: ListView.builder(
         itemBuilder: (context, index) {
           return Text(data.states[index].name);

@@ -9,6 +9,8 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  TextEditingController searchController = TextEditingController();
+
   // Text Field for Searching Cities,
   // On Search, saves it into searched/saved cities
   // Automatically opens full tile of results
@@ -33,8 +35,24 @@ class _SearchScreenState extends State<SearchScreen> {
         ],
       ),
       body: Center(
-        child: CityCovidList(),
-      ),
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          TextField(
+            onSubmitted: (value) {
+              getStateCovidStats(value);
+            },
+            controller: searchController,
+            style: TextStyle(),
+            textAlign: TextAlign.center,
+          ),
+          CityCovidList(),
+        ],
+      )),
     );
   }
+
+  void getStateCovidStats(String state) {}
 }
