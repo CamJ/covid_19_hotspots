@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^0.1.3
   fl_chart: ^0.12.0
+  geocoding: ^1.0.5
   geolocator: ^6.0.0
   http: ^0.12.2
   provider: ^4.3.2+2

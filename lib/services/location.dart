@@ -1,4 +1,5 @@
 import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
 
 class Location {
   static final Location _location = Location._internal();
@@ -6,6 +7,7 @@ class Location {
 
   double latitude;
   double longitude;
+  Placemark placemark;
 
   factory Location() {
     return _location;
@@ -22,6 +24,7 @@ class Location {
           await getCurrentPosition(desiredAccuracy: LocationAccuracy.lowest);
       latitude = position.latitude;
       longitude = position.longitude;
+      placemark = (await placemarkFromCoordinates(latitude, longitude)).first;
     }
 
     return null;
@@ -33,5 +36,22 @@ class Location {
 
   double getLongitude() {
     return longitude;
+  }
+
+  String getCity() {
+    return placemark.locality;
+  }
+
+  String getCountry() {
+    return placemark.country;
+  }
+
+  String getState() {
+    return placemark.administrativeArea;
+  }
+
+  // TODO: get County from Current location
+  String getCounty() {
+    return '';
   }
 }

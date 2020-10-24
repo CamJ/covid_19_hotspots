@@ -1,5 +1,26 @@
 import 'package:flutter/material.dart';
 
+class CovidDataModel extends ChangeNotifier {
+  List<StateData> states = [];
+
+  CovidDataModel();
+
+  void addStates(List<StateData> states) {
+    states.addAll(states);
+    notifyListeners();
+  }
+
+  void addState(StateData state) {
+    states.add(state);
+    notifyListeners();
+  }
+
+  void removeState(int index) {
+    states.removeAt(index);
+    notifyListeners();
+  }
+}
+
 class CovidData extends ChangeNotifier {
   // TODO: what do I want this model to look like?
   List<StateData> states = [];
