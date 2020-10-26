@@ -27,17 +27,18 @@ class CovidAPI {
     }
   }
 
-  Future<dynamic> getCovidStateData(String state) async {
+  Future<StateData> getCovidStateData(String state) async {
     String url = apiURL;
-    url += "state";
+    url += "$state";
 
     http.Response data = await http.get(url);
 
     if (data.statusCode == 200) {
       print(data.body);
       var jsonData = jsonDecode(data.body);
-      CovidData covid = CovidData.fromJSON(jsonData);
-      print(covid.states.length);
+      StateData covid = StateData.fromJSON(jsonData);
+      print(covid.name);
+      return covid;
     } else {
       print(data.statusCode);
     }

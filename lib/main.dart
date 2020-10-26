@@ -10,7 +10,7 @@ import 'models/covid_data.dart';
 void main() {
   runApp(ChangeNotifierProvider(
     child: MyApp(),
-    create: (context) => CovidData([]),
+    create: (context) => CovidDataModel(),
   ));
 }
 

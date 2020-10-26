@@ -16,18 +16,14 @@ class Location {
   Location._internal();
 
   Future<void> getLocation() async {
-    LocationPermission permission = _permission ?? await requestPermission();
-    print(permission);
-    if (permission == LocationPermission.always ||
-        permission == LocationPermission.whileInUse) {
-      Position position =
-          await getCurrentPosition(desiredAccuracy: LocationAccuracy.lowest);
-      latitude = position.latitude;
-      longitude = position.longitude;
-      placemark = (await placemarkFromCoordinates(latitude, longitude)).first;
-    }
-
-    return null;
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.lowest);
+    latitude = position.latitude;
+    longitude = position.longitude;
+    placemark = (await placemarkFromCoordinates(latitude, longitude,
+            localeIdentifier: 'en_US'))
+        .first;
+    print(placemark);
   }
 
   double getLatitude() {

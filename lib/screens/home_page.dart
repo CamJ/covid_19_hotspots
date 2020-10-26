@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_template/components/covid_card.dart';
+import 'package:provider/provider.dart';
+import 'package:us_states/us_states.dart';
 
+import '../models/covid_data.dart';
 import '../services/covid_api.dart';
 import '../utils/routes.dart';
+import '../services/location.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -18,8 +22,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
+    print("Init home screen");
     super.initState();
-    covidAPI.getCovidData();
+    Location location = Location();
+    location.getLocation().then((_) async {
+      print("GOT LOCATION");
+      print(
+          "LOCATION : ${location.getCountry()}, ${location.getLatitude()}, ${location.getState()}");
+      var stateData = await covidAPI
+          .getCovidStateData(USStates.getName(location.getState()));
+      print("STATE DATA $stateData");
+      Provider.of<CovidDataModel>(context, listen: false).addState(stateData);
+    });
   }
 
   @override
