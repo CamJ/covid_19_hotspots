@@ -20,20 +20,20 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   CovidAPI covidAPI = CovidAPI();
 
+  StateData currentState;
+
   @override
   void initState() {
-    print("Init home screen");
     super.initState();
-    Location location = Location();
-    location.getLocation().then((_) async {
-      print("GOT LOCATION");
-      print(
-          "LOCATION : ${location.getCountry()}, ${location.getLatitude()}, ${location.getState()}");
-      var stateData = await covidAPI
-          .getCovidStateData(USStates.getName(location.getState()));
-      print("STATE DATA $stateData");
-      Provider.of<CovidDataModel>(context, listen: false).addState(stateData);
-    });
+    if (currentState == null) {
+      Location location = Location();
+      location.getLocation().then((_) async {
+        currentState = await covidAPI
+            .getCovidStateData(USStates.getName(location.getState()));
+        Provider.of<CovidDataModel>(context, listen: false)
+            .addState(currentState);
+      });
+    }
   }
 
   @override

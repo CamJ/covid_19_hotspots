@@ -4,19 +4,20 @@ import 'package:provider/provider.dart';
 
 import 'package:flutter_app_template/models/covid_data.dart';
 
-class CityCovidList extends StatelessWidget {
-  final CovidData data = CovidData.example();
+import 'city_tile.dart';
 
+class CityCovidList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<CovidData>(
+    return Consumer<CovidDataModel>(
       builder: (context, value, child) {
         return Expanded(
             child: ListView.builder(
+          padding: EdgeInsets.all(10.0),
           itemBuilder: (context, index) {
-            return Text(data.states[index].name);
+            return CityCovidTile(state: value.states[index]);
           },
-          itemCount: data.states.length,
+          itemCount: value.states.length,
         ));
       },
     );
