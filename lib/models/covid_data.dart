@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class CovidDataModel extends ChangeNotifier {
   List<StateData> states = [];
 
+  StateData currentState;
+
   CovidDataModel();
 
   void addStates(List<StateData> states) {
@@ -12,6 +14,11 @@ class CovidDataModel extends ChangeNotifier {
 
   void addState(StateData state) {
     states.add(state);
+    notifyListeners();
+  }
+
+  void setCurrentState(StateData state) {
+    currentState = state;
     notifyListeners();
   }
 

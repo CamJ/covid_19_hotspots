@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_template/models/covid_data.dart';
 
 class CovidCard extends StatelessWidget {
+  final StateData data;
+
+  const CovidCard({this.data});
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -19,10 +24,69 @@ class CovidCard extends StatelessWidget {
             ),
             Row(
               children: [
-                Text('LOCATION'),
-                SizedBox(width: 20.0),
-                Text('INsert chart here'),
-                // TODO: What charts to show? 
+                Expanded(
+                    child: Text(
+                  data.name,
+                  textAlign: TextAlign.center,
+                )),
+                // TODO: What charts to show?
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                    child: Text(
+                  "Todays Deaths",
+                  textAlign: TextAlign.center,
+                )),
+                Expanded(
+                    child: Text(
+                  data.todaysDeaths.toString(),
+                  textAlign: TextAlign.center,
+                )),
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                    child: Text(
+                  "Total Deaths",
+                  textAlign: TextAlign.center,
+                )),
+                Expanded(
+                    child: Text(
+                  data.totalDeaths.toString(),
+                  textAlign: TextAlign.center,
+                )),
+              ],
+            ),
+            Divider(),
+            Row(
+              children: [
+                Expanded(
+                    child: Text(
+                  "Todays Cases",
+                  textAlign: TextAlign.center,
+                )),
+                Expanded(
+                    child: Text(
+                  data.todaysCases.toString(),
+                  textAlign: TextAlign.center,
+                )),
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                    child: Text(
+                  "Total Cases",
+                  textAlign: TextAlign.center,
+                )),
+                Expanded(
+                    child: Text(
+                  data.totalCases.toString(),
+                  textAlign: TextAlign.center,
+                )),
               ],
             )
           ],

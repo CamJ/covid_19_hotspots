@@ -30,6 +30,7 @@ class CovidAPI {
   Future<StateData> getCovidStateData(String state) async {
     String url = apiURL;
     url += "$state";
+    url += "?yesterday=true";
 
     http.Response data = await http.get(url);
 

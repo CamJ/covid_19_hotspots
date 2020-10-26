@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
         currentState = await covidAPI
             .getCovidStateData(USStates.getName(location.getState()));
         Provider.of<CovidDataModel>(context, listen: false)
-            .addState(currentState);
+            .setCurrentState(currentState);
       });
     }
   }
@@ -58,12 +58,17 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            CovidCard(),
+            CovidCard(
+                data: Provider.of<CovidDataModel>(context, listen: false)
+                    .currentState),
             SizedBox(
               height: 10.0,
             ),
             // Make this second one a scrolling, local news tile?
-            CovidCard(),
+            // TODO: maybe it's a trending scrolling list of highest covid cases, or states on the rise
+            CovidCard(
+                data: Provider.of<CovidDataModel>(context, listen: false)
+                    .currentState),
             SizedBox(
               height: 10.0,
             ),
