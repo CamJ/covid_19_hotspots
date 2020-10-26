@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_template/models/covid_data.dart';
 
+import 'package:fl_chart/fl_chart.dart';
+
 class CovidCard extends StatelessWidget {
   final StateData data;
 
@@ -88,7 +90,12 @@ class CovidCard extends StatelessWidget {
                   textAlign: TextAlign.center,
                 )),
               ],
-            )
+            ),
+            // Row(
+            //   children: [
+            //     LineChart(LineChartData()),
+            //   ],
+            // )
           ],
         ),
       ),

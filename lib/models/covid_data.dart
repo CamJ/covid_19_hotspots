@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// TODO: What do I want the model of this too look like?
+
 class CovidDataModel extends ChangeNotifier {
   List<StateData> states = [];
 
@@ -59,6 +61,9 @@ class StateData {
   String name;
   int todaysCases;
   int todaysDeaths;
+
+  int yesterdaysCases;
+  int yesterdaysDeaths;
 
   int totalCases;
   int totalDeaths;

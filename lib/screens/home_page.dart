@@ -30,6 +30,13 @@ class _MyHomePageState extends State<MyHomePage> {
       location.getLocation().then((_) async {
         currentState = await covidAPI
             .getCovidStateData(USStates.getName(location.getState()));
+
+        StateData yesterday = await covidAPI
+            .getCovidStateData(USStates.getName(location.getState()));
+
+        currentState.yesterdaysCases = yesterday.todaysCases;
+        currentState.yesterdaysDeaths = yesterday.totalDeaths;
+
         Provider.of<CovidDataModel>(context, listen: false)
             .setCurrentState(currentState);
       });
@@ -58,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            // TODO: The closest county/city stats if possible
             CovidCard(
                 data: Provider.of<CovidDataModel>(context, listen: false)
                     .currentState),
@@ -65,7 +73,15 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 10.0,
             ),
             // Make this second one a scrolling, local news tile?
-            // TODO: maybe it's a trending scrolling list of highest covid cases, or states on the rise
+            // TODO: maybe it's a trending scrolling list of highest covid cases, or states on the rise - move this elsewhere
+            // TODO: This can be the state stats
+            CovidCard(
+                data: Provider.of<CovidDataModel>(context, listen: false)
+                    .currentState),
+            SizedBox(
+              height: 10.0,
+            ),
+            // TODO: This can be the US country stats and trends
             CovidCard(
                 data: Provider.of<CovidDataModel>(context, listen: false)
                     .currentState),

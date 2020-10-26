@@ -1,6 +1,8 @@
 // TODO: Should this be global news?
 import 'package:flutter/material.dart';
 
+import 'package:fl_chart/fl_chart.dart';
+
 import '../utils/routes.dart';
 
 class NewsScreen extends StatefulWidget {
@@ -32,7 +34,61 @@ class _NewsScreenState extends State<NewsScreen> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
+              // width: double.infinity,
+              padding: EdgeInsets.all(15.0),
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Column(
+                children: [
+                  Text('US DEATHS'),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  LineChart(
+                    LineChartData(
+                      gridData: FlGridData(
+                        show: false,
+                      ),
+                      borderData: FlBorderData(
+                        show: false,
+                      ),
+                      titlesData: FlTitlesData(
+                          bottomTitles: SideTitles(
+                        showTitles: true,
+                        getTitles: (value) {
+                          // TODO: This is how to create the dates on the bottom
+                          return "$value/$value";
+                        },
+                      )),
+                      lineBarsData: [
+                        // TODO: X axis
+                        LineChartBarData(
+                          spots: [
+                            FlSpot(0, 5),
+                            FlSpot(1, 7),
+                            FlSpot(2, 18),
+                            FlSpot(3, 20),
+                          ],
+                          isCurved: true,
+                        ),
+                      ],
+                      axisTitleData: FlAxisTitleData(
+                        leftTitle:
+                            AxisTitle(titleText: "Deaths", showTitle: true),
+                        bottomTitle:
+                            AxisTitle(titleText: "Date", showTitle: true),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

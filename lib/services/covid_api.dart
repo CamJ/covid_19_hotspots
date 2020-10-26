@@ -27,22 +27,23 @@ class CovidAPI {
     }
   }
 
-  Future<StateData> getCovidStateData(String state) async {
+  Future<StateData> getCovidStateData(String state,
+      {bool yesterday = false}) async {
     String url = apiURL;
     url += "$state";
-    url += "?yesterday=true";
+    url += "?yesterday=$yesterday";
 
     http.Response data = await http.get(url);
 
     if (data.statusCode == 200) {
-      print(data.body);
       var jsonData = jsonDecode(data.body);
       StateData covid = StateData.fromJSON(jsonData);
-      print(covid.name);
       return covid;
     } else {
       print(data.statusCode);
     }
+
+    return null;
   }
 
   // TODO: get data from a different URL to get county data
