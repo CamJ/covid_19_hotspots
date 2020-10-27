@@ -6,8 +6,16 @@ class CovidDataModel extends ChangeNotifier {
   List<StateData> states = [];
 
   StateData currentState;
+  CountryData currentCountry;
+
+  Map<String, List<TimelineData>> timeline;
 
   CovidDataModel();
+
+  void addUSHistorical(Map<String, List<TimelineData>> data) {
+    timeline = data;
+    notifyListeners();
+  }
 
   void addStates(List<StateData> states) {
     states.addAll(states);
@@ -16,6 +24,11 @@ class CovidDataModel extends ChangeNotifier {
 
   void addState(StateData state) {
     states.add(state);
+    notifyListeners();
+  }
+
+  void addCountry(CountryData country) {
+    currentCountry = country;
     notifyListeners();
   }
 
@@ -30,34 +43,7 @@ class CovidDataModel extends ChangeNotifier {
   }
 }
 
-class CovidData extends ChangeNotifier {
-  // TODO: what do I want this model to look like?
-  List<StateData> states = [];
-
-  CovidData(this.states);
-
-  static fromJSON(dynamic jsonData) {
-    print("COVID FROM JSON");
-    List<StateData> states = [];
-    for (var state in jsonData) {
-      print(state);
-      states.add(StateData.fromJSON(state));
-    }
-
-    return CovidData(states);
-  }
-
-  static example() {
-    List<StateData> states = [
-      StateData('Iowa', 1000, 50, 10000, 500),
-      StateData('Nevada', 1000, 50, 10000, 500),
-      StateData('California', 1000, 50, 10000, 500),
-    ];
-    return CovidData(states);
-  }
-}
-
-class StateData {
+abstract class CovidData {
   String name;
   int todaysCases;
   int todaysDeaths;
@@ -68,13 +54,37 @@ class StateData {
   int totalCases;
   int totalDeaths;
 
-  StateData(this.name, this.todaysCases, this.todaysDeaths, this.totalCases,
+  CovidData(this.name, this.todaysCases, this.todaysDeaths, this.totalCases,
       this.totalDeaths);
+}
+
+class StateData extends CovidData {
+  StateData(String name, int todaysCases, int todaysDeaths, int totalCases,
+      int totalDeaths)
+      : super(name, todaysCases, todaysDeaths, totalCases, totalDeaths);
 
   static fromJSON(dynamic jsonData) {
     return StateData(jsonData['state'], jsonData['todayCases'],
         jsonData['todayDeaths'], jsonData['cases'], jsonData['deaths']);
   }
+}
+
+class CountryData extends CovidData {
+  CountryData(String name, int todaysCases, int todaysDeaths, int totalCases,
+      int totalDeaths)
+      : super(name, todaysCases, todaysDeaths, totalCases, totalDeaths);
+
+  static fromJSON(dynamic jsonData) {
+    return CountryData(jsonData['country'], jsonData['todayCases'],
+        jsonData['todayDeaths'], jsonData['cases'], jsonData['deaths']);
+  }
+}
+
+class TimelineData {
+  String date;
+  int number;
+
+  TimelineData(this.date, this.number);
 }
 
 // Example State Data:

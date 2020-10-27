@@ -39,7 +39,7 @@ class Location {
   }
 
   String getCountry() {
-    return placemark.country;
+    return placemark.isoCountryCode;
   }
 
   String getState() {
@@ -48,6 +48,6 @@ class Location {
 
   // TODO: get County from Current location
   String getCounty() {
-    return '';
+    return placemark.subAdministrativeArea;
   }
 }

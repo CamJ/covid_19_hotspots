@@ -5,6 +5,7 @@ import 'package:flutter_app_template/utils/routes.dart';
 import 'package:provider/provider.dart';
 
 import './screens/search_screen.dart';
+import './screens/loading_screen.dart';
 import 'models/covid_data.dart';
 
 void main() {
@@ -19,8 +20,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Covid 19 Hotspots', // TODO
-        initialRoute: Routes.NEAR_ME,
+        initialRoute: Routes.LOADING,
         routes: {
+          Routes.LOADING: (context) => LoadingScreen(),
           Routes.NEAR_ME: (context) => MyHomePage(
                 title: 'Covid 19 Hotspots',
               ),

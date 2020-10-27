@@ -9,6 +9,7 @@ class Routes {
   static const NEAR_ME = '/near_me';
   static const SEARCH = '/search';
   static const NEWS = '/news';
+  static const LOADING = '/loading';
 
   static String getRoute(int item) {
     String route;

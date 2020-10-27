@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_template/components/covid_card.dart';
+import 'package:flutter_app_template/components/covid_chart.dart';
 import 'package:provider/provider.dart';
 import 'package:us_states/us_states.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -26,22 +27,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    if (currentState == null) {
-      Location location = Location();
-      location.getLocation().then((_) async {
-        currentState = await covidAPI
-            .getCovidStateData(USStates.getName(location.getState()));
-
-        StateData yesterday = await covidAPI
-            .getCovidStateData(USStates.getName(location.getState()));
-
-        currentState.yesterdaysCases = yesterday.todaysCases;
-        currentState.yesterdaysDeaths = yesterday.totalDeaths;
-
-        Provider.of<CovidDataModel>(context, listen: false)
-            .setCurrentState(currentState);
-      });
-    }
   }
 
   @override
@@ -65,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: SingleChildScrollView(
           child: Container(
-            height: 1000, // TODO: without this I runinto layout issues
+            height: 2000, // TODO: without this I runinto layout issues
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -82,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 // TODO: This can be the state stats
                 CovidCard(
                     data: Provider.of<CovidDataModel>(context, listen: false)
-                        .currentState),
+                        .currentCountry),
                 SizedBox(
                   height: 10.0,
                 ),
@@ -93,58 +78,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 SizedBox(
                   height: 10.0,
                 ),
-                Container(
-                  // width: double.infinity,
-                  padding: EdgeInsets.all(15.0),
-                  decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Column(
-                    children: [
-                      Text('US DEATHS'),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      LineChart(
-                        LineChartData(
-                          gridData: FlGridData(
-                            show: false,
-                          ),
-                          borderData: FlBorderData(
-                            show: false,
-                          ),
-                          titlesData: FlTitlesData(
-                              bottomTitles: SideTitles(
-                            showTitles: true,
-                            getTitles: (value) {
-                              // TODO: This is how to create the dates on the bottom
-                              return "$value/$value";
-                            },
-                          )),
-                          lineBarsData: [
-                            // TODO: X axis
-                            LineChartBarData(
-                              spots: [
-                                FlSpot(0, 5),
-                                FlSpot(1, 7),
-                                FlSpot(2, 18),
-                                FlSpot(3, 20),
-                              ],
-                              isCurved: true,
-                            ),
-                          ],
-                          axisTitleData: FlAxisTitleData(
-                            leftTitle:
-                                AxisTitle(titleText: "Deaths", showTitle: true),
-                            bottomTitle:
-                                AxisTitle(titleText: "Date", showTitle: true),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                CovidChart(
+                    title: "Cases",
+                    data: Provider.of<CovidDataModel>(context, listen: false)
+                        .timeline['cases']),
+                CovidChart(
+                    title: "Deaths",
+                    data: Provider.of<CovidDataModel>(context, listen: false)
+                        .timeline['deaths']),
               ],
             ),
           ),
