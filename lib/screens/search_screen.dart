@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_template/components/city_list.dart';
+import 'package:flutter_app_template/models/covid_data.dart';
+import 'package:flutter_app_template/services/covid_api.dart';
+import 'package:provider/provider.dart';
 
 import '../utils/routes.dart';
 
@@ -9,6 +12,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  CovidAPI api = CovidAPI();
   TextEditingController searchController = TextEditingController();
 
   // Text Field for Searching Cities,
@@ -38,15 +42,21 @@ class _SearchScreenState extends State<SearchScreen> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisSize: MainAxisSize.max,
         children: [
-          TextField(
-            onSubmitted: (value) {
-              getStateCovidStats(value);
-            },
-            controller: searchController,
-            style: TextStyle(),
-            textAlign: TextAlign.center,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: TextField(
+              decoration: InputDecoration(
+                icon: Icon(Icons.location_city),
+                hintText: "Enter a state",
+              ),
+              onSubmitted: (value) {
+                getStateCovidStats(value);
+              },
+              controller: searchController,
+              style: TextStyle(),
+              textAlign: TextAlign.center,
+            ),
           ),
           CityCovidList(),
         ],
@@ -54,7 +64,11 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  void getStateCovidStats(String state) {
+  void getStateCovidStats(String state) async {
     if (state == null || state.trim().isEmpty) return;
+
+    var data = await api.getCovidStateData(state, yesterday: false);
+    Provider.of<CovidDataModel>(context, listen: false).addState(data);
+    searchController.clear();
   }
 }
