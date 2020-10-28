@@ -15,7 +15,7 @@ class CovidChart extends StatelessWidget {
   Widget build(BuildContext context) {
     List<FlSpot> spots = [];
 
-    for (int i = 0; i < data.length; i++) {
+    for (int i = data.length - 30; i < data.length; i++) {
       spots.add(FlSpot(i.toDouble(), data[i].number.toDouble()));
     }
     return Container(
@@ -56,6 +56,7 @@ class CovidChart extends StatelessWidget {
                 // TODO: X axis
                 LineChartBarData(
                   spots: spots,
+                  dotData: FlDotData(getDotPainter: _dotPainter),
                   isCurved: true,
                 ),
               ],
@@ -69,4 +70,11 @@ class CovidChart extends StatelessWidget {
       ),
     );
   }
+}
+
+FlDotPainter _dotPainter(
+    FlSpot spot, double xPercentage, LineChartBarData bar, int index,
+    {double size}) {
+  return FlDotCirclePainter(
+      radius: 0, color: Colors.red, strokeColor: Colors.red);
 }

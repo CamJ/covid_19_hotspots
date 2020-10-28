@@ -108,6 +108,34 @@ class CovidAPI {
         timelineData['deaths'].add(TimelineData(key, value));
       });
 
+      // Convert to daily counts
+      var dailyCases = <TimelineData>[];
+      var dailyDeaths = <TimelineData>[];
+
+      dailyCases.add(timelineData['cases'].first);
+      dailyDeaths.add(timelineData['deaths'].first);
+
+      for (int i = 1; i < timelineData['cases'].length; i++) {
+        var yesterday = timelineData['cases'][i - 1];
+        var todayOld = timelineData['cases'][i];
+
+        var today =
+            TimelineData(todayOld.date, (todayOld.number - yesterday.number));
+        dailyCases.add(today);
+      }
+
+      for (int i = 1; i < timelineData['deaths'].length; i++) {
+        var yesterday = timelineData['deaths'][i - 1];
+        var todayOld = timelineData['deaths'][i];
+
+        var today =
+            TimelineData(todayOld.date, (todayOld.number - yesterday.number));
+        dailyDeaths.add(today);
+      }
+
+      timelineData['cases'] = dailyCases;
+      timelineData['deaths'] = dailyDeaths;
+
       return timelineData;
     } else {
       print(data.statusCode);
