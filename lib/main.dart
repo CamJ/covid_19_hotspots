@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
           Routes.NEWS: (context) => NewsScreen(),
         },
         theme: ThemeData.dark().copyWith(
-          primaryColor: Colors.black,
-          backgroundColor: Colors.black26,
+          primaryColor: Color(0xFF1A1C26),
+          backgroundColor: Color(0xFF1A1C26),
         ));
   }
 }

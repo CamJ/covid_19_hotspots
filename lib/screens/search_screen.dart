@@ -23,10 +23,12 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     // Search input for city / state
     return Scaffold(
+      backgroundColor: Color(0xFF1A1C26),
       appBar: AppBar(
         title: Text('COVID 19 Hotspots'),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xFF1A1C26),
         onTap: (value) =>
             Navigator.pushReplacementNamed(context, Routes.getRoute(value)),
         items: [

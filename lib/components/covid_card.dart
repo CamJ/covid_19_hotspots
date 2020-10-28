@@ -13,7 +13,7 @@ class CovidCard extends StatelessWidget {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.grey[500],
+          color: Color(0xFF242635),
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: Column(

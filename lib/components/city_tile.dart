@@ -14,7 +14,7 @@ class CityCovidTile extends StatelessWidget {
       padding: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
-        color: Colors.grey,
+        color: Color(0xFF242635),
       ),
       child: Column(
         children: [

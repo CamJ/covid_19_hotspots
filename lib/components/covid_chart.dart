@@ -22,7 +22,7 @@ class CovidChart extends StatelessWidget {
       // width: double.infinity,
       padding: EdgeInsets.all(15.0),
       decoration: BoxDecoration(
-        color: Colors.grey,
+        color: Color(0xFF242635),
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Column(

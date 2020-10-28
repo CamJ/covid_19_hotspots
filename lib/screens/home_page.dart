@@ -32,10 +32,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF1A1C26),
       appBar: AppBar(
         title: Text(widget.title),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xFF1A1C26),
         onTap: (value) =>
             Navigator.pushReplacementNamed(context, Routes.getRoute(value)),
         items: [
