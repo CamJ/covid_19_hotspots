@@ -2,6 +2,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:fl_chart/fl_chart.dart';
+import 'package:covid_hotspots/components/covid_chart.dart';
+import 'package:covid_hotspots/models/covid_data.dart';
+import 'package:provider/provider.dart';
 
 import '../utils/routes.dart';
 
@@ -37,7 +40,16 @@ class _NewsScreenState extends State<NewsScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[],
+          children: <Widget>[
+            CovidChart(
+                title: "Cases",
+                data: Provider.of<CovidDataModel>(context, listen: false)
+                    .timeline['cases']),
+            CovidChart(
+                title: "Deaths",
+                data: Provider.of<CovidDataModel>(context, listen: false)
+                    .timeline['deaths']),
+          ],
         ),
       ),
     );

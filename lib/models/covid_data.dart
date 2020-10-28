@@ -9,9 +9,15 @@ class CovidDataModel extends ChangeNotifier {
   CountryData currentCountry;
   CountyData currentCounty;
 
+  String location;
+
   Map<String, List<TimelineData>> timeline;
 
   CovidDataModel();
+
+  void setLocation(String loc) {
+    location = loc;
+  }
 
   void addUSHistorical(Map<String, List<TimelineData>> data) {
     timeline = data;

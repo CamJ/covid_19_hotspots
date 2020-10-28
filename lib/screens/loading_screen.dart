@@ -63,6 +63,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
     Provider.of<CovidDataModel>(context, listen: false)
         .setCurrentCounty(countyToday);
 
+    Provider.of<CovidDataModel>(context, listen: false).setLocation(
+        '${location.getCity()}, ${location.getState()} - ${location.getCountry()}');
+
     Navigator.pushReplacementNamed(context, Routes.NEAR_ME);
   }
 

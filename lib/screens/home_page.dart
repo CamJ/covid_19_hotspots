@@ -50,46 +50,47 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: Center(
-        child: SingleChildScrollView(
-          child: Container(
-            height: 1000, // TODO: without this I runinto layout issues
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                // TODO: The closest county/city stats if possible
-                CovidCard(
-                    data: Provider.of<CovidDataModel>(context, listen: false)
-                        .currentCounty),
-                SizedBox(
-                  height: 10.0,
-                ),
-                // Make this second one a scrolling, local news tile?
-                // TODO: maybe it's a trending scrolling list of highest covid cases, or states on the rise - move this elsewhere
-                // TODO: This can be the state stats
-                CovidCard(
-                    data: Provider.of<CovidDataModel>(context, listen: false)
-                        .currentState),
-                SizedBox(
-                  height: 10.0,
-                ),
-                // TODO: This can be the US country stats and trends
-                CovidCard(
-                    data: Provider.of<CovidDataModel>(context, listen: false)
-                        .currentCountry),
-                SizedBox(
-                  height: 10.0,
-                ),
-                CovidChart(
-                    title: "Cases",
-                    data: Provider.of<CovidDataModel>(context, listen: false)
-                        .timeline['cases']),
-                CovidChart(
-                    title: "Deaths",
-                    data: Provider.of<CovidDataModel>(context, listen: false)
-                        .timeline['deaths']),
-              ],
-            ),
+        child: Container(
+          // height: 500, // TODO: without this I runinto layout issues
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                '${Provider.of<CovidDataModel>(context, listen: false).location}',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              // TODO: The closest county/city stats if possible
+              CovidCard(
+                  data: Provider.of<CovidDataModel>(context, listen: false)
+                      .currentCounty,
+                  type: 'County'),
+              SizedBox(
+                height: 10.0,
+              ),
+              // Make this second one a scrolling, local news tile?
+              // TODO: maybe it's a trending scrolling list of highest covid cases, or states on the rise - move this elsewhere
+              // TODO: This can be the state stats
+              CovidCard(
+                  data: Provider.of<CovidDataModel>(context, listen: false)
+                      .currentState,
+                  type: 'State'),
+              SizedBox(
+                height: 10.0,
+              ),
+              // TODO: This can be the US country stats and trends
+              CovidCard(
+                  data: Provider.of<CovidDataModel>(context, listen: false)
+                      .currentCountry,
+                  type: 'Country'),
+              SizedBox(
+                height: 10.0,
+              ),
+            ],
           ),
         ),
       ),

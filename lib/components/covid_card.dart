@@ -6,8 +6,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CovidCard extends StatelessWidget {
   final CovidData data;
+  final String type;
 
-  const CovidCard({this.data});
+  const CovidCard({this.data, this.type});
 
   @override
   Widget build(BuildContext context) {
@@ -21,19 +22,9 @@ class CovidCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Statistics'.toUpperCase(),
+              type.toUpperCase(),
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
-            ),
-            Row(
-              children: [
-                Expanded(
-                    child: Text(
-                  data.name,
-                  textAlign: TextAlign.center,
-                )),
-                // TODO: What charts to show?
-              ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
