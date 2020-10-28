@@ -7,6 +7,7 @@ class CovidDataModel extends ChangeNotifier {
 
   StateData currentState;
   CountryData currentCountry;
+  CountyData currentCounty;
 
   Map<String, List<TimelineData>> timeline;
 
@@ -37,6 +38,11 @@ class CovidDataModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setCurrentCounty(CountyData county) {
+    currentCounty = county;
+    notifyListeners();
+  }
+
   void removeState(int index) {
     states.removeAt(index);
     notifyListeners();
@@ -58,6 +64,18 @@ abstract class CovidData {
 
   CovidData(this.name, this.todaysCases, this.todaysDeaths, this.totalCases,
       this.totalDeaths, this.totalRecovered);
+}
+
+class CountyData extends CovidData {
+  CountyData(String name, int todaysCases, int todaysDeaths, int totalCases,
+      int totalDeaths, int totalRecovered)
+      : super(name, todaysCases, todaysDeaths, totalCases, totalDeaths,
+            totalRecovered);
+
+  static fromJSON(dynamic jsonData) {
+    return CountyData(jsonData['county'], 0, 0, jsonData['stats']['confirmed'],
+        jsonData['stats']['deaths'], jsonData['stats']['recovered']);
+  }
 }
 
 class StateData extends CovidData {

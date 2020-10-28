@@ -11,6 +11,7 @@ import '../models/covid_data.dart';
 const String stateApiURL = "https://corona.lmao.ninja/v3/covid-19/states/";
 
 const String countryApiURL = "https://disease.sh/v3/covid-19/countries/";
+const String countyApiURL = "https://disease.sh/v3/covid-19/jhucsse/counties/";
 
 // TODO: What pieces of COVID data do I want to get?
 class CovidAPI {
@@ -56,8 +57,36 @@ class CovidAPI {
     return null;
   }
 
+  Future<CountyData> getCovidCountyData(String county, String state,
+      {bool yesterday = false}) async {
+    String url = countyApiURL;
+    url += "$county";
+    url += "?yesterday=$yesterday";
+    url += "&strict=true";
+
+    print(url);
+    http.Response data = await http.get(url);
+
+    if (data.statusCode == 200) {
+      var jsonData = jsonDecode(data.body);
+      print(jsonData);
+      print(state);
+      for (var countyMap in jsonData) {
+        if (countyMap['province'] == state) {
+          print(countyMap);
+          CountyData covid = CountyData.fromJSON(countyMap);
+          return covid;
+        }
+      }
+    } else {
+      print(data.statusCode);
+    }
+
+    return null;
+  }
+
   Future<Map<String, List<TimelineData>>> getUSHistoricalData() async {
-    String url = "https://disease.sh/v3/covid-19/historical/US?lastdays=30";
+    String url = "https://disease.sh/v3/covid-19/historical/US?lastdays=all";
 
     http.Response data = await http.get(url);
 

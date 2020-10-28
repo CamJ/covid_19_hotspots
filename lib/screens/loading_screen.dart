@@ -46,7 +46,13 @@ class _LoadingScreenState extends State<LoadingScreen> {
       countryToday.yesterdaysDeaths = countryYesterday.todaysDeaths;
     }
 
+    CountyData countyToday = await covidAPI.getCovidCountyData(
+        location.getCounty(), USStates.getName(location.getState()));
+
     var timelineData = await covidAPI.getUSHistoricalData();
+
+    // TODO: Calculate daily values with current day - lyesterday
+
     Provider.of<CovidDataModel>(context, listen: false)
         .addUSHistorical(timelineData);
 
@@ -54,6 +60,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
         .setCurrentState(currentState);
     Provider.of<CovidDataModel>(context, listen: false)
         .addCountry(countryToday);
+    Provider.of<CovidDataModel>(context, listen: false)
+        .setCurrentCounty(countyToday);
 
     Navigator.pushReplacementNamed(context, Routes.NEAR_ME);
   }

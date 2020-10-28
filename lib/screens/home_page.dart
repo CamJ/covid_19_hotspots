@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: SingleChildScrollView(
           child: Container(
-            height: 2000, // TODO: without this I runinto layout issues
+            height: 1000, // TODO: without this I runinto layout issues
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 // TODO: The closest county/city stats if possible
                 CovidCard(
                     data: Provider.of<CovidDataModel>(context, listen: false)
-                        .currentState),
+                        .currentCounty),
                 SizedBox(
                   height: 10.0,
                 ),
@@ -69,14 +69,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 // TODO: This can be the state stats
                 CovidCard(
                     data: Provider.of<CovidDataModel>(context, listen: false)
-                        .currentCountry),
+                        .currentState),
                 SizedBox(
                   height: 10.0,
                 ),
                 // TODO: This can be the US country stats and trends
                 CovidCard(
                     data: Provider.of<CovidDataModel>(context, listen: false)
-                        .currentState),
+                        .currentCountry),
                 SizedBox(
                   height: 10.0,
                 ),

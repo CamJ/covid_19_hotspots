@@ -88,63 +88,6 @@ class CovidCard extends StatelessWidget {
                 )
               ],
             ),
-            Row(
-              children: [
-                Expanded(
-                    child: Text(
-                  "Todays Deaths",
-                  textAlign: TextAlign.center,
-                )),
-                Expanded(
-                    child: Text(
-                  data.todaysDeaths.toString(),
-                  textAlign: TextAlign.center,
-                )),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                    child: Text(
-                  "Total Deaths",
-                  textAlign: TextAlign.center,
-                )),
-                Expanded(
-                    child: Text(
-                  data.totalDeaths.toString(),
-                  textAlign: TextAlign.center,
-                )),
-              ],
-            ),
-            Divider(),
-            Row(
-              children: [
-                Expanded(
-                    child: Text(
-                  "Todays Cases",
-                  textAlign: TextAlign.center,
-                )),
-                Expanded(
-                    child: Text(
-                  data.todaysCases.toString(),
-                  textAlign: TextAlign.center,
-                )),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                    child: Text(
-                  "Total Cases",
-                  textAlign: TextAlign.center,
-                )),
-                Expanded(
-                    child: Text(
-                  data.totalCases.toString(),
-                  textAlign: TextAlign.center,
-                )),
-              ],
-            ),
           ],
         ),
       ),
