@@ -1,5 +1,5 @@
-name: flutter_app_template # TODO
-description: A new Flutter project # TODO.
+name: covid_hotspots
+description: A COVID tracking app
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 

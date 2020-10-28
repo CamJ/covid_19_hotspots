@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_template/models/covid_data.dart';
+import 'package:covid_hotspots/models/covid_data.dart';
 
 class CovidChart extends StatelessWidget {
   final String title;

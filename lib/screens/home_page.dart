@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_template/components/covid_card.dart';
-import 'package:flutter_app_template/components/covid_chart.dart';
+import 'package:covid_hotspots/components/covid_card.dart';
+import 'package:covid_hotspots/components/covid_chart.dart';
 import 'package:provider/provider.dart';
 import 'package:us_states/us_states.dart';
 import 'package:fl_chart/fl_chart.dart';

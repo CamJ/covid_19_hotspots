@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_template/components/city_list.dart';
-import 'package:flutter_app_template/models/covid_data.dart';
-import 'package:flutter_app_template/services/covid_api.dart';
+import 'package:covid_hotspots/components/city_list.dart';
+import 'package:covid_hotspots/models/covid_data.dart';
+import 'package:covid_hotspots/services/covid_api.dart';
 import 'package:provider/provider.dart';
 
 import '../utils/routes.dart';

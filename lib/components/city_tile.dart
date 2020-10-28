@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_app_template/models/covid_data.dart';
+import 'package:covid_hotspots/models/covid_data.dart';
 
 class CityCovidTile extends StatelessWidget {
   final StateData state;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_template/screens/home_page.dart';
-import 'package:flutter_app_template/screens/news_screen.dart';
-import 'package:flutter_app_template/utils/routes.dart';
+import 'package:covid_hotspots/screens/home_page.dart';
+import 'package:covid_hotspots/screens/news_screen.dart';
+import 'package:covid_hotspots/utils/routes.dart';
 import 'package:provider/provider.dart';
 
 import './screens/search_screen.dart';

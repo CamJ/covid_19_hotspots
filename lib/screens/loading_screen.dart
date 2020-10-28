@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_template/models/covid_data.dart';
-import 'package:flutter_app_template/services/covid_api.dart';
-import 'package:flutter_app_template/services/location.dart';
-import 'package:flutter_app_template/utils/routes.dart';
+import 'package:covid_hotspots/models/covid_data.dart';
+import 'package:covid_hotspots/services/covid_api.dart';
+import 'package:covid_hotspots/services/location.dart';
+import 'package:covid_hotspots/utils/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:us_states/us_states.dart';
 
