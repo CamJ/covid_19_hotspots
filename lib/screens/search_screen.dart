@@ -1,3 +1,4 @@
+import 'package:covid_hotspots/components/covid_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_hotspots/components/city_list.dart';
 import 'package:covid_hotspots/models/covid_data.dart';
@@ -27,19 +28,7 @@ class _SearchScreenState extends State<SearchScreen> {
       appBar: AppBar(
         title: Text('COVID 19 Hotspots'),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xFF1A1C26),
-        onTap: (value) =>
-            Navigator.pushReplacementNamed(context, Routes.getRoute(value)),
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.near_me), title: Text("Near Me")),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.location_city), title: Text("Search")),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.new_releases), title: Text("News")),
-        ],
-      ),
+      bottomNavigationBar: CovidNavbar(),
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

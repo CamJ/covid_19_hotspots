@@ -43,6 +43,15 @@ class CovidCard extends StatelessWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 22.0),
                     ),
+                    Row(
+                      children: [
+                        Text('15%'),
+                        Icon(
+                          Icons.arrow_upward,
+                          color: Colors.red,
+                        )
+                      ],
+                    )
                   ],
                 ),
                 Column(
@@ -59,6 +68,15 @@ class CovidCard extends StatelessWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 22.0),
                     ),
+                    Row(
+                      children: [
+                        Text('15%'),
+                        Icon(
+                          Icons.arrow_upward,
+                          color: Colors.red,
+                        )
+                      ],
+                    )
                   ],
                 ),
                 Column(
@@ -75,6 +93,15 @@ class CovidCard extends StatelessWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 22.0),
                     ),
+                    Row(
+                      children: [
+                        Text('15%'),
+                        Icon(
+                          Icons.arrow_downward,
+                          color: Colors.green,
+                        )
+                      ],
+                    )
                   ],
                 )
               ],
