@@ -54,29 +54,43 @@ abstract class CovidData {
   int totalCases;
   int totalDeaths;
 
+  int totalRecovered;
+
   CovidData(this.name, this.todaysCases, this.todaysDeaths, this.totalCases,
-      this.totalDeaths);
+      this.totalDeaths, this.totalRecovered);
 }
 
 class StateData extends CovidData {
   StateData(String name, int todaysCases, int todaysDeaths, int totalCases,
-      int totalDeaths)
-      : super(name, todaysCases, todaysDeaths, totalCases, totalDeaths);
+      int totalDeaths, int totalRecovered)
+      : super(name, todaysCases, todaysDeaths, totalCases, totalDeaths,
+            totalRecovered);
 
   static fromJSON(dynamic jsonData) {
-    return StateData(jsonData['state'], jsonData['todayCases'],
-        jsonData['todayDeaths'], jsonData['cases'], jsonData['deaths']);
+    return StateData(
+        jsonData['state'],
+        jsonData['todayCases'],
+        jsonData['todayDeaths'],
+        jsonData['cases'],
+        jsonData['deaths'],
+        jsonData['recovered']);
   }
 }
 
 class CountryData extends CovidData {
   CountryData(String name, int todaysCases, int todaysDeaths, int totalCases,
-      int totalDeaths)
-      : super(name, todaysCases, todaysDeaths, totalCases, totalDeaths);
+      int totalDeaths, int totalRecovered)
+      : super(name, todaysCases, todaysDeaths, totalCases, totalDeaths,
+            totalRecovered);
 
   static fromJSON(dynamic jsonData) {
-    return CountryData(jsonData['country'], jsonData['todayCases'],
-        jsonData['todayDeaths'], jsonData['cases'], jsonData['deaths']);
+    return CountryData(
+        jsonData['country'],
+        jsonData['todayCases'],
+        jsonData['todayDeaths'],
+        jsonData['cases'],
+        jsonData['deaths'],
+        jsonData['recovered']);
   }
 }
 

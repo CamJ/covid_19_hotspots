@@ -46,6 +46,7 @@ class CovidAPI {
 
     if (data.statusCode == 200) {
       var jsonData = jsonDecode(data.body);
+      print(jsonData);
       StateData covid = StateData.fromJSON(jsonData);
       return covid;
     } else {

@@ -30,8 +30,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
         USStates.getName(location.getState()),
         yesterday: true);
 
-    currentState.yesterdaysCases = yesterday.todaysCases;
-    currentState.yesterdaysDeaths = yesterday.totalDeaths;
+    if (yesterday != null) {
+      currentState.yesterdaysCases = yesterday.todaysCases;
+      currentState.yesterdaysDeaths = yesterday.totalDeaths;
+    }
 
     CountryData countryToday =
         await covidAPI.getCovidCountryData(location.getCountry());
@@ -39,8 +41,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
     CountryData countryYesterday = await covidAPI
         .getCovidCountryData(location.getCountry(), yesterday: true);
 
-    countryToday.yesterdaysCases = countryYesterday.todaysCases;
-    countryToday.yesterdaysDeaths = countryYesterday.todaysDeaths;
+    if (countryYesterday != null) {
+      countryToday.yesterdaysCases = countryYesterday.todaysCases;
+      countryToday.yesterdaysDeaths = countryYesterday.todaysDeaths;
+    }
 
     var timelineData = await covidAPI.getUSHistoricalData();
     Provider.of<CovidDataModel>(context, listen: false)
